@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมัครงาน ร้านซาลาเปา</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #2d3748;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .header p {
+            color: #718096;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2d3748;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        input[type="file"] {
+            cursor: pointer;
+            padding: 8px 0;
+        }
+        .photo-preview {
+            margin-top: 12px;
+            text-align: center;
+        }
+        .photo-preview img {
+            max-width: 120px;
+            max-height: 120px;
+            border-radius: 8px;
+        }
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-submit {
+            background: #667eea;
+            color: white;
+        }
+        .btn-submit:hover {
+            background: #5568d3;
+        }
+        .btn-reset {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+        .success-message {
+            display: none;
+            background: #c6f6d5;
+            color: #22543d;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>สมัครงาน ร้านซาลาเปา</h1>
+            <p>พนักงานขายประจำร้าน 1 ตำแหน่ง</p>
+        </div>
+        
+        <div class="success-message" id="successMsg">
+            ✓ ส่งใบสมัครสำเร็จ!
+        </div>
+        
+        <form id="applicationForm">
+            <div class="form-group">
+                <label for="phone">เบอร์โทรศัพท์ *</label>
+                <input type="tel" id="phone" name="phone" placeholder="เช่น 081234567" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="name">ชื่อ-นามสกุล *</label>
+                <input type="text" id="name" name="name" placeholder="เช่น สมหญิง ใจดี" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="age">อายุ *</label>
+                <input type="number" id="age" name="age" placeholder="เช่น 25" min="20" max="35" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="photo">รูปตัวเอง *</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+                <div id="photoPreview" class="photo-preview"></div>
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" class="btn-submit">ส่งใบสมัคร</button>
+                <button type="reset" class="btn-reset">ล้างข้อมูล</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        const form = document.getElementById('applicationForm');
+        const photoInput = document.getElementById('photo');
+        const photoPreview = document.getElementById('photoPreview');
+        const successMsg = document.getElementById('successMsg');
+        const APPS_SCRIPT_URL = "https://script.googleapis.com/macros/d/1F4Yca4TU96msEbroDnKpmjbNT2bT15uOUvmTTvVEEzVhTJMt75vqAc23/usercf";
+        
+        photoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                photoPreview.innerHTML = `<img src="${event.target.result}" alt="preview">`;
+            };
+            reader.readAsDataURL(file);
+        });
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const phone = document.getElementById('phone').value.trim();
+            const name = document.getElementById('name').value.trim();
+            const age = document.getElementById('age').value.trim();
+            const photoFile = photoInput.files[0];
+            
+            if (!phone || !name || !age || !photoFile) {
+                alert('กรุณากรอกข้อมูลให้ครบทุกช่อง');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const payload = {
+                    name: name,
+                    phone: phone,
+                    age: age,
+                    photoBase64: event.target.result
+                };
+                
+                fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        successMsg.style.display = 'block';
+                        form.reset();
+                        photoPreview.innerHTML = '';
+                        setTimeout(() => location.reload(), 2000);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            };
+            reader.readAsDataURL(photoFile);
+        });
+    </script>
+</body>
+</html>
