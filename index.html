@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+  <html lang="th">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>กึมมี่ ร้านซาลาเปา - แบบฟอร์มสมัครงาน</title>
+      <style>
+          * {
+              margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+}
+
+        body {
+                      font-family: 'Segoe UI', 'Tahoma', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+}
+
+        .container {
+                      background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px;
+            max-width: 600px;
+            text-align: center;
+}
+
+        h1 {
+                      color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+}
+
+        .subtitle {
+                      color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .info-box {
+                      background: #f0f4ff;
+                      border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            border-radius: 8px;
+}
+
+        .info-box h3 {
+                      color: #667eea;
+            margin-bottom: 10px;
+}
+
+        .info-box p {
+                      color: #555;
+            margin: 5px 0;
+            line-height: 1.6;
+}
+
+        .button {
+                      display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1em;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+}
+
+        .button:hover {
+                      transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+        .button:active {
+                      transform: translateY(0);
+}
+
+        .requirements {
+            background: #fff9e6;
+                        border-left: 5px solid #ffa500;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            border-radius: 8px;
+        }
+
+        .requirements h3 {
+                      color: #ff8c00;
+                                  margin-bottom: 10px;
+        }
+
+        .requirements ul {
+                      list-style: none;
+            padding-left: 0;
+        }
+
+        .requirements li {
+                      color: #555;
+            margin: 5px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .requirements li:before {
+                      content: "\2713";
+            position: absolute;
+            left: 0;
+            color: #ff8c00;
+                        font-weight: bold;
+}
+
+        .footer {
+                      color: #999;
+            font-size: 0.9em;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+              }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+            }
+    </style>
+      </head>
+      <body>
+          <div class="container">
+              <h1><span class="emoji">🥟</span>กึมมี่</h1>
+              <p class="subtitle">ร้านซาลาเปา BTS คูขาด</p>
+
+              <h2 style="color: #555; font-size: 1.5em; margin-bottom: 30px;">แบบฟอร์มสมัครงาน</h2>
+
+              <div class="info-box">
+                  <h3><span class="emoji">📋</span>ตำแหน่งที่รับสมัคร</h3>
+                  <p><strong>พนักงานขายหญิง 1 คน</strong></p>
+                  <p><span class="emoji">💰</span> เงินเดือน: <strong>9,000 บาท/เดือน</strong> + คอมมิชชั่น</p>
+                  <p><span class="emoji">📅</span> วันทำงาน: จันทร์-ศุกร์ (วันหยุด: เสาร์-อาทิตย์)</p>
+              </div>
+
+              <div class="requirements">
+                  <h3><span class="emoji">📋</span>เงื่อนไขที่ต้องการ</h3>
+                  <ul>
+                      <li>อายุ 20-35 ปี</li>
+                      <li>มัธยมศึกษาปีที่ 3 ขึ้นไป</li>
+                      <li>ยินดีเรียนรู้และสนใจงานขาย</li>
+                      <li>มีจิตสำนึกในการให้บริการ</li>
+                  </ul>
+              </div>
+
+              <button class="button" onclick="window.location.href='/geummi-recruitment-form.html'">
+                  <span class="emoji">→</span> เข้าแบบฟอร์มสมัคร
+              </button>
+
+              <div class="footer">
+                  <p><span class="emoji">✅</span> ข้อมูลของคุณจะถูกบันทึกโดยอัตโนมัติ</p>
+                  <p><span class="emoji">📈</span> ส่วนรูปตัวเองจะถูกเก็บไว้ใน Google Drive</p>
+              </div>
+          </div>
+      </body>
+      </html>
